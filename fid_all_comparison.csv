@@ -1,0 +1,4 @@
+name,folder,fid_vs_dataset
+UNet fine-tuned (epoch 3),comparison_unet_epoch3\vanilla,198.0162
+"LoRA (rank=4, alpha=4)",comparison_fid_100\lora,188.5005
+"LoRA (rank=16, alpha=32)",comparison-2_fid-2\lora,197.2409
