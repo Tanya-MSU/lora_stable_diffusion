@@ -29,7 +29,7 @@ unique_id = uuid.uuid4().hex
 before_path = os.path.join(before_dir, f"before_{timestamp}_{unique_id}.png")
 image_before = pipe(prompt).images[0]
 image_before.save(before_path)
-print(f"✅ Сохранено: {before_path}")
+print(f"Сохранено: {before_path}")
 
 # === Подгружаем LoRA ===
 pipe.unet.load_attn_procs(checkpoint_path)
@@ -39,4 +39,4 @@ unique_id = uuid.uuid4().hex
 after_path = os.path.join(after_dir, f"after_{timestamp}_{unique_id}.png")
 image_after = pipe(prompt).images[0]
 image_after.save(after_path)
-print(f"✅ Сохранено: {after_path}")
+print(f"Сохранено: {after_path}")
