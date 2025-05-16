@@ -19,7 +19,7 @@ before_path = get_latest_image(before_dir)
 after_path = get_latest_image(after_dir)
 
 if not before_path or not after_path:
-    raise FileNotFoundError("❌ Не найдены изображения для сравнения.")
+    raise FileNotFoundError("Не найдены изображения для сравнения.")
 
 # === Загрузка CLIP модели ===
 model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").to(device)
@@ -41,10 +41,10 @@ print(f"\nBEFORE ({before_path.name}): {round(before_sim, 4)}")
 print(f"AFTER  ({after_path.name}): {round(after_sim, 4)}")
 
 improvement = after_sim - before_sim
-print("\n📊 Улучшение:", round(improvement, 4))
+print("\nУлучшение:", round(improvement, 4))
 if improvement > 0:
-    print("✅ LoRA улучшила соответствие изображения промпту.")
+    print("LoRA улучшила соответствие изображения промпту.")
 elif improvement < 0:
-    print("❌ LoRA сделала результат хуже.")
+    print("LoRA сделала результат хуже.")
 else:
-    print("➖ Разницы нет.")
+    print("Разницы нет.")
