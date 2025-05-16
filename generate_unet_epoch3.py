@@ -25,4 +25,4 @@ for i in range(NUM_IMAGES):
     image = pipe(PROMPT).images[0]
     image.save(OUTPUT_DIR / f"{i:03d}.png")
 
-print(f"✅ Сгенерировано {NUM_IMAGES} изображений в папку: {OUTPUT_DIR.resolve()}")
+print(f"Сгенерировано {NUM_IMAGES} изображений в папку: {OUTPUT_DIR.resolve()}")
