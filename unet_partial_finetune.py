@@ -41,7 +41,7 @@ num_trainable = int(num_total * PERCENT_PARAMS_TO_TRAIN)
 selected = set(random.sample(range(num_total), num_trainable))
 for i, (name, param) in enumerate(all_params):
     param.requires_grad = i in selected
-print(f"🔧 Разморожено {num_trainable} из {num_total} параметров ({PERCENT_PARAMS_TO_TRAIN * 100:.1f}%)")
+print(f"Разморожено {num_trainable} из {num_total} параметров ({PERCENT_PARAMS_TO_TRAIN * 100:.1f}%)")
 
 # === Датасет ===
 class BaroqueDataset(Dataset):
@@ -67,7 +67,7 @@ CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
 
 # === Обучение ===
 for epoch in range(EPOCHS):
-    print(f"\n🧪 Эпоха {epoch + 1}/{EPOCHS}")
+    print(f"\nЭпоха {epoch + 1}/{EPOCHS}")
     for images in tqdm(loader, desc="Обучение"):
         images = images.to(device)
 
@@ -89,11 +89,11 @@ for epoch in range(EPOCHS):
         optimizer.step()
         optimizer.zero_grad()
 
-    print(f"✅ Loss: {loss.item():.4f}")
+    print(f"Loss: {loss.item():.4f}")
 
     # === Сохранение чекпоинта ===
     if (epoch + 1) % SAVE_EVERY == 0:
         save_path = CHECKPOINT_DIR / f"epoch_{epoch + 1}"
         save_path.mkdir(parents=True, exist_ok=True)
         pipe.save_pretrained(save_path)
-        print(f"💾 Чекпоинт сохранён: {save_path.resolve()}")
+        print(f"Чекпоинт сохранён: {save_path.resolve()}")
