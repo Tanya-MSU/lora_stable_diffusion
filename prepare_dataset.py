@@ -37,4 +37,4 @@ for style in os.listdir(root_dir):
 df = pd.DataFrame(data)
 df.to_csv(output_csv, index=False)
 
-print(f"✅ Обработано стилей: {len(data)} изображений сохранено в {output_csv}")
+print(f"Обработано стилей: {len(data)} изображений сохранено в {output_csv}")
