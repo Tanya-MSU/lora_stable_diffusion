@@ -112,15 +112,15 @@
 #         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 #         filename = f"{label.lower()}_{timestamp}_{i:03d}.png"
 #         image.save(output_path / filename)
-#         print(f"✅ Сохранено: {filename}")
+#         print(f"Сохранено: {filename}")
 #
 # # === Основной процесс ===
 # def main():
 #     device = "cuda" if torch.cuda.is_available() else "cpu"
-#     print(f"📁 Папка для вывода: {OUTPUT_DIR}")
+#     print(f"Папка для вывода: {OUTPUT_DIR}")
 #
 #     # Базовая модель
-#     print("🔄 Загружаем базовую модель...")
+#     print("Загружаем базовую модель...")
 #     pipe = StableDiffusionPipeline.from_pretrained(MODEL_NAME, torch_dtype=torch.float32)
 #     pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
 #     pipe.safety_checker = None
@@ -128,7 +128,7 @@
 #     pipe = pipe.to(device)
 #
 #     # Генерация обычных изображений
-#     print("🎨 Генерация изображений базовой моделью...")
+#     print("Генерация изображений базовой моделью...")
 #     generate_images(pipe, VANILLA_DIR, NUM_IMAGES, label="vanilla")
 #
 #     # Подключение LoRA
@@ -137,14 +137,14 @@
 #     pipe.unet.load_attn_procs(state_dict)
 #
 #     # Генерация изображений с LoRA
-#     print("🎨 Генерация изображений с LoRA...")
+#     print("Генерация изображений с LoRA...")
 #     generate_images(pipe, LORA_DIR, NUM_IMAGES, label="lora")
 #
 #     del pipe
 #     gc.collect()
 #     torch.cuda.empty_cache()
 #
-#     print("✅ Генерация завершена!")
+#     print("Генерация завершена!")
 #
 # if __name__ == "__main__":
 #     main()
@@ -169,7 +169,7 @@ VANILLA_DIR = OUTPUT_DIR / "vanilla"
 LORA_DIR = OUTPUT_DIR / "lora"
 
 def main():
-    print("⏳ Считаем FID для vanilla...")
+    print("Считаем FID для vanilla...")
     fid_vanilla = fid_score.calculate_fid_given_paths(
         [str(DATASET_PATH), str(VANILLA_DIR)],
         batch_size=10,
@@ -177,7 +177,7 @@ def main():
         dims=2048,
     )
 
-    print("⏳ Считаем FID для LoRA...")
+    print("Считаем FID для LoRA...")
     fid_lora = fid_score.calculate_fid_given_paths(
         [str(DATASET_PATH), str(LORA_DIR)],
         batch_size=10,
@@ -185,7 +185,7 @@ def main():
         dims=2048,
     )
 
-    print(f"\n✅ Готово!")
+    print(f"\n Готово!")
     print(f"FID vanilla vs dataset: {fid_vanilla:.4f}")
     print(f"FID lora vs dataset: {fid_lora:.4f}")
 
@@ -200,7 +200,7 @@ def main():
 
     CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(CSV_PATH, mode='a', header=not CSV_PATH.exists(), index=False)
-    print(f"📁 CSV записан в: {CSV_PATH.resolve()}")
+    print(f"CSV записан в: {CSV_PATH.resolve()}")
 
 if __name__ == "__main__":
     main()
