@@ -17,7 +17,7 @@ def compute_fid(name, gen_path):
         device="cuda" if torch.cuda.is_available() else "cpu",
         dims=2048,
     )
-    print(f"✅ FID {name}: {fid:.4f}")
+    print(f"FID {name}: {fid:.4f}")
     return round(fid, 4)
 
 def main():
@@ -43,7 +43,7 @@ def main():
 
     df = pd.DataFrame(results)
     df.to_csv(CSV_PATH, index=False)
-    print(f"\n📁 CSV сохранён: {CSV_PATH.resolve()}")
+    print(f"\n CSV сохранён: {CSV_PATH.resolve()}")
 
 if __name__ == "__main__":
     import torch.multiprocessing
